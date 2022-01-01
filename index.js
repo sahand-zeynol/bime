@@ -35,6 +35,58 @@ async function run() {
   await page.keyboard.type(password);
   await page.click("button[type=submit]");
   await page.goto(panelUrl);
+  await page.waitForTimeout(3000);
+  await page.click(
+    "#content > div:nth-child(3) > div > div > div > div > form > div.card-body.py-2 > div.row.mb-2.mt-4 > div.input-group.form-group.col-12.col-lg-3.width-class > div.btn-group > button"
+  );
+  await page.click(
+    "#content > div:nth-child(3) > div > div > div > div > form > div.card-body.py-2 > div.row.mb-2.mt-4 > div.input-group.form-group.col-12.col-lg-3.width-class > div.btn-group.show > ul > li:nth-child(5) > a > label > input[type=checkbox]"
+  );
+  await page.click(
+    "#content > div:nth-child(3) > div > div > div > div > form > div.card-body.py-2 > div.row.mb-2.mt-4 > div.input-group.form-group.col-12.col-lg-3.width-class > div.btn-group.show > ul > li:nth-child(6) > a > label > input[type=checkbox]"
+  );
+  await page.click(
+    "#content > div:nth-child(3) > div > div > div > div > form > div.card-body.py-2 > div.row.mb-2.mt-4 > div.input-group.form-group.col-12.col-lg-3.width-class > div.btn-group.show > ul > li:nth-child(7) > a > label > input[type=checkbox]"
+  );
+  await page.click(
+    "#content > div:nth-child(3) > div > div > div > div > form > div.card-body.py-2 > div.row.mb-2.mt-4 > div.input-group.form-group.col-12.col-lg-3.width-class > div.btn-group.show > ul > li:nth-child(8) > a > label > input[type=checkbox]"
+  );
+  await page.click(
+    "#content > div:nth-child(3) > div > div > div > div > form > div.card-body.py-2 > div.row.mb-2.mt-4 > div.input-group.form-group.col-12.col-lg-3.width-class > div.btn-group.show > ul > li:nth-child(9) > a > label > input[type=checkbox]"
+  );
+  await page.click(
+    "#content > div:nth-child(3) > div > div > div > div > form > div.card-body.py-2 > div.row.mb-2.mt-4 > div.input-group.form-group.col-12.col-lg-3.width-class > div.btn-group.show > ul > li:nth-child(10) > a > label > input[type=checkbox]"
+  );
+  // await page.click("#start-date-alt");
+  await page.evaluate(() => {
+    const date = document.querySelector("#start-date-alt");
+    date.value = "2021-12-30";
+  });
+  await page.waitForTimeout(3000);
+  await page.click(
+    "#content > div:nth-child(3) > div > div > div > div > form > div.card-body.py-2 > div.float-left.mb-2 > button"
+  );
+  await page.waitForTimeout(3000);
+  await page.click(
+    "#content > div:nth-child(3) > div > div > div > div > form > div.card-body.py-2 > div.float-left.mb-2 > button"
+  );
+  // const elHandleArray = await page.$$("");
+  // for (let button of buttons) {
+  //   await button.click();
+  //   const modal = await page.$('div.artdeco-modal');
+  //   await model.click();
+  // }
+  await page.waitForNavigation();
+
+  const pageUrls = await page.evaluate(() => {
+    const links = Array.from(
+      document.querySelectorAll(".status_ASSIGN_TO_PARTNER")
+    );
+
+    return links;
+  });
+  console.log(pageUrls);
+
   // await page.waitForTimeout(3000);
   // await page.click("#next-button");
   // await page.waitForTimeout(3000);
