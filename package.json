@@ -1,0 +1,22 @@
+{
+  "name": "bime-iahia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.10",
+    "file-saver": "^2.0.5",
+    "moment-jalaali": "^0.9.2",
+    "prompt-sync": "^4.2.0",
+    "xlsx": "^0.17.4"
+  },
+  "devDependencies": {
+    "puppeteer": "^11.0.0"
+  }
+}
