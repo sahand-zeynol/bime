@@ -5,8 +5,8 @@ const title = [];
 const ids = [];
 const loginUrl = "http://carbill.ir/partner/login";
 const panelUrl = "http://carbill.ir/partner/insurance";
-const fromDate = new Date(2021, 11, 10);
-const toDate = new Date(2021, 11, 22);
+const fromDate = new Date(2022, 02, 02);
+const toDate = new Date(2022, 02, 04);
 const username = "hor4451";
 const password = "09123063070";
 const excel = [
@@ -60,7 +60,7 @@ async function run() {
   // await page.click("#start-date-alt");
   await page.evaluate(() => {
     const date = document.querySelector("#start-date-alt");
-    date.value = "2021-12-30";
+    date.value = "2022-02-02";
   });
   await page.waitForTimeout(3000);
   await page.click(
@@ -70,22 +70,64 @@ async function run() {
   await page.click(
     "#content > div:nth-child(3) > div > div > div > div > form > div.card-body.py-2 > div.float-left.mb-2 > button"
   );
-  // const elHandleArray = await page.$$("");
-  // for (let button of buttons) {
-  //   await button.click();
-  //   const modal = await page.$('div.artdeco-modal');
-  //   await model.click();
-  // }
+
   await page.waitForNavigation();
 
-  const pageUrls = await page.evaluate(() => {
-    const links = Array.from(
-      document.querySelectorAll(".status_ASSIGN_TO_PARTNER")
-    );
-
-    return links;
+  const firstTry = await page.evaluate(() => {
+    return Array.from(
+      document.querySelectorAll("#pills-THIRD_PARTY .status_ASSIGN_TO_PARTNER")
+    ).map((x) => x.getAttribute("id"));
   });
-  console.log(pageUrls);
+  console.log(firstTry);
+
+  // const buttons = await page.$x(
+  //   "//tr[@class[contains(.,'status_ASSIGN_TO_PARTNER')]]/td[16]/a[1]"
+  // );
+  // for (let button of buttons) {
+  //   await button.click();
+  //   await page.waitForSelector(".modal", { visible: true });
+  //   const newButton = await page.waitForSelector(".close", {
+  //     visible: true,
+  //   });
+  //   await page.waitForTimeout(3000);
+  //   await newButton.click();
+  //   await page.waitForTimeout(6000);
+  //   await page.waitForNavigation();
+  //   // await page.waitForFunction(".modal", { hidden: true });
+  //   // await page.click("button.close");
+  // }
+
+  // await page.click("#user_row_0 > td:nth-child(16) > a:nth-child(1)");
+
+  // await page.waitForTimeout(3000);
+
+  // const data = await page.evaluate(() => {
+  //   const tds = Array.from(
+  //     document.querySelectorAll('[id^="order_"] .modal-body table tr td')
+  //   );
+  //   return tds.map((td) => td.innerText);
+  // });
+
+  // const data1 = await page.evaluate(() => {
+  //   const tds = Array.from(
+  //     document.querySelectorAll('modal-content')
+  //   );
+  //   return tds.map((td) => td.innerText);
+  // });
+
+  // async function chunk(arr, len) {
+  //   var chunks = [],
+  //     i = 0,
+  //     n = arr.length;
+
+  //   while (i < n) {
+  //     chunks.push(arr.slice(i, (i += len)));
+  //   }
+
+  //   return chunks;
+  // }
+  // const newData = await chunk(data, 54);
+  // console.log(newData[1], newData.length);
 
   // await page.waitForTimeout(3000);
   // await page.click("#next-button");
